@@ -4,24 +4,21 @@ import Validator from '../helpers/Validator'
 import { doCreateRow } from '../actions/userTable'
 
 class AddUserForm extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      login: '',
-      password: '',
-      repassword: '',
-    }
+  state = {
+    login: '',
+    password: '',
+    repassword: '',
   }
 
-  onLoginChange = e => {
+  changeLogin = e => {
     this.setState({ login: e.target.value })
   }
 
-  onPasswordChange = e => {
+  changePassword = e => {
     this.setState({ password: e.target.value })
   }
 
-  onRepasswordChange = e => {
+  changeRePassword = e => {
     this.setState({ repassword: e.target.value })
   }
 
@@ -65,7 +62,7 @@ class AddUserForm extends Component {
               name="login"
               className="login"
               value={login}
-              onChange={this.onLoginChange}
+              onChange={this.changeLogin}
               placeholder="Enter new email"
             />
           </p>
@@ -75,7 +72,7 @@ class AddUserForm extends Component {
               name="password"
               className="password"
               value={password}
-              onChange={this.onPasswordChange}
+              onChange={this.changePassword}
               placeholder="Enter new password"
             />
           </p>
@@ -85,7 +82,7 @@ class AddUserForm extends Component {
               name="re-password"
               className="re-password"
               value={repassword}
-              onChange={this.onRepasswordChange}
+              onChange={this.changeRePassword}
               placeholder="Repeat password"
             />
           </p>

@@ -1,26 +1,30 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
-import axios from 'axios'
+import { connect } from 'react-redux'
 import Validator from '../../helpers/Validator'
+import { doRegister } from '../../actions/userTable'
 
 import './Register.css'
 
 class Register extends Component {
   state = {
-    login: null,
-    password: null,
-    repassword: null,
+    login: '',
+    password: '',
+    repassword: '',
   }
 
   changeLogin = e => {
     this.setState({ login: e.target.value })
   }
+
   changePassword = e => {
     this.setState({ password: e.target.value })
   }
+
   changeRePassword = e => {
     this.setState({ repassword: e.target.value })
   }
+
   validate(login, password) {
     if (login.trim() === '' || password.trim() === '') {
       alert('Fill the form. All fields are required')
@@ -28,10 +32,10 @@ class Register extends Component {
     }
     return true
   }
+
   doRegister = e => {
     e.preventDefault()
     let { login, password, repassword } = this.state
-    let form = e.target
     if (!Validator.isEmail(login)) {
       alert('Email is not valid')
       return false
@@ -41,24 +45,14 @@ class Register extends Component {
       return
     }
     if (this.validate(login, password)) {
-      axios
-        .get(
-          `https://us-club.pw/api/add.php?login=${login}&password=${password}`
-        )
-        .then(response => {
-          let data = response.data
-          if (data.status === 'error') {
-            alert(data.error)
-          }
-          if (data.status === 'ok') {
-            form.reset()
-            alert('Success! Now you can login')
-          }
-        })
+      this.props.doRegister(login, password)
+      this.setState({ login: '', password: '', repassword: '' })
+      alert('Success! Now you can login')
     }
   }
 
   render() {
+    let { login, password, repassword } = this.state
     return (
       <div className="register-form">
         <h2>Registration</h2>
@@ -69,6 +63,7 @@ class Register extends Component {
               name="login"
               className="login"
               placeholder="Enter email"
+              value={login}
               onChange={this.changeLogin}
             />
           </p>
@@ -78,6 +73,7 @@ class Register extends Component {
               name="password"
               className="password"
               placeholder="Enter password"
+              value={password}
               onChange={this.changePassword}
             />
           </p>
@@ -87,6 +83,7 @@ class Register extends Component {
               name="re-password"
               className="re-password"
               placeholder="Repeat password"
+              value={repassword}
               onChange={this.changeRePassword}
             />
           </p>
@@ -104,4 +101,13 @@ class Register extends Component {
   }
 }
 
-export default Register
+const mapDispatchToProps = dispatch => {
+  return {
+    doRegister: (login, password) => dispatch(doRegister(login, password)),
+  }
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Register)

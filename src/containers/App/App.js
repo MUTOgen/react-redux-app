@@ -4,6 +4,7 @@ import Home from '../../components/Home'
 import Login from '../../components/Login/Login'
 import { doLogout } from '../../actions/user'
 import Admin from '../../components/Admin/Admin'
+import Register from '../../components/Register/Register'
 import logo from '../../logo.svg'
 import { connect } from 'react-redux'
 import './App.css'
@@ -68,6 +69,12 @@ class App extends Component {
               path="/login"
               render={() =>
                 user === undefined ? <Login /> : <Redirect to="/" />
+              }
+            />
+            <Route
+              path="/register"
+              render={() =>
+                user === undefined ? <Register /> : <Redirect to="/" />
               }
             />
             <Route

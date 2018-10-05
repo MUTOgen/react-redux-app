@@ -11,6 +11,9 @@ import {
   CREATE_USERS_FAIL,
   CREATE_USERS_START,
   CREATE_USERS_SUCCESS,
+  REGISTER_USERS_FAIL,
+  REGISTER_USERS_START,
+  REGISTER_USERS_SUCCESS,
 } from '../actions/userTable'
 
 const initialState = []
@@ -21,6 +24,7 @@ export function userTableReducer(state = initialState, action) {
     case UPDATE_USERS_FAIL:
     case DELETE_USERS_FAIL:
     case CREATE_USERS_FAIL:
+    case REGISTER_USERS_FAIL:
       alert(action.payload)
       return state
     case REQUEST_USERS_SUCCESS:
@@ -41,6 +45,8 @@ export function userTableReducer(state = initialState, action) {
     case UPDATE_USERS_START:
     case DELETE_USERS_START:
     case CREATE_USERS_START:
+    case REGISTER_USERS_START:
+    case REGISTER_USERS_SUCCESS:
     default:
       return state
   }

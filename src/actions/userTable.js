@@ -17,6 +17,10 @@ export const CREATE_USERS_START = 'create_users_start'
 export const CREATE_USERS_SUCCESS = 'create_users_success'
 export const CREATE_USERS_FAIL = 'create_users_fail'
 
+export const REGISTER_USERS_START = 'register_users_start'
+export const REGISTER_USERS_SUCCESS = 'register_users_success'
+export const REGISTER_USERS_FAIL = 'register_users_fail'
+
 export function doLoad() {
   return dispatch => {
     dispatch({
@@ -121,6 +125,31 @@ export function doCreateRow(login, password) {
               login: data.item.login,
               password: data.item.password,
             },
+          })
+        }
+      })
+  }
+}
+
+export function doRegister(login, password) {
+  return dispatch => {
+    dispatch({
+      type: REGISTER_USERS_START,
+    })
+
+    axios
+      .get(`https://us-club.pw/api/add.php?login=${login}&password=${password}`)
+      .then(response => {
+        let data = response.data
+        if (data.status === 'error') {
+          dispatch({
+            type: REGISTER_USERS_FAIL,
+            payload: data.error,
+          })
+        }
+        if (data.status === 'ok') {
+          dispatch({
+            type: REGISTER_USERS_SUCCESS,
           })
         }
       })
