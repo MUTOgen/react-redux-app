@@ -15,11 +15,11 @@ class Table extends Component {
     }
   }
 
-  onChangePage = new_page => {
+  changePage = new_page => {
     this.setState({ page: new_page })
   }
 
-  onFilterChange = e => {
+  filterChange = e => {
     this.setState({ filter: e.target.value, page: 1 })
   }
 
@@ -47,13 +47,7 @@ class Table extends Component {
     const filterUsers = this.doFilter()
     const rows = filterUsers
       .slice((page - 1) * perPage, page * perPage)
-      .map(item => (
-        <TableRow
-          key={item.id.toString()}
-          data={item}
-          onDelete={this.onDeleteItem}
-        />
-      ))
+      .map(item => <TableRow key={item.id.toString()} data={item} />)
 
     return (
       <div className="user-table">
@@ -65,7 +59,7 @@ class Table extends Component {
                 type="text"
                 className="filter"
                 name="filter"
-                onChange={this.onFilterChange}
+                onChange={this.filterChange}
                 placeholder="Search rows in table"
               />
             </div>
@@ -85,7 +79,7 @@ class Table extends Component {
               perPage={perPage}
               total={filterUsers.length}
               pages={Math.ceil(filterUsers.length / perPage)}
-              onChangePage={this.onChangePage}
+              onChangePage={this.changePage}
             />
           </div>
         ) : (

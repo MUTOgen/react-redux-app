@@ -78,11 +78,11 @@ class TableRow extends Component {
     }
   }
 
-  passwordChanged = e => {
+  passwordChange = e => {
     this.setState({ password: e.target.value })
   }
 
-  loginChanged = e => {
+  loginChange = e => {
     this.setState({ login: e.target.value })
   }
 
@@ -99,7 +99,7 @@ class TableRow extends Component {
               type="text"
               name="login"
               className="login"
-              onChange={this.loginChanged}
+              onChange={this.loginChange}
               defaultValue={login}
             />
           )}
@@ -112,7 +112,7 @@ class TableRow extends Component {
               type="password"
               name="password"
               className="password"
-              onChange={this.passwordChanged}
+              onChange={this.passwordChange}
               placeholder="Leave empty to save old password"
             />
           )}

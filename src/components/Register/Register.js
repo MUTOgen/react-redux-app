@@ -47,7 +47,6 @@ class Register extends Component {
     if (this.validate(login, password)) {
       this.props.doRegister(login, password)
       this.setState({ login: '', password: '', repassword: '' })
-      alert('Success! Now you can login')
     }
   }
 

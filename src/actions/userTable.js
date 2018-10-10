@@ -126,6 +126,7 @@ export function doCreateRow(login, password) {
               password: data.item.password,
             },
           })
+          alert('New item added!')
         }
       })
   }
@@ -151,6 +152,7 @@ export function doRegister(login, password) {
           dispatch({
             type: REGISTER_USERS_SUCCESS,
           })
+          alert('Success! Now you can login')
         }
       })
   }

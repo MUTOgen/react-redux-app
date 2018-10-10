@@ -47,7 +47,6 @@ class AddUserForm extends Component {
 
     this.props.doAdd(login, password)
     this.setState({ login: '', password: '', repassword: '' })
-    alert('New item added!')
   }
 
   render() {
