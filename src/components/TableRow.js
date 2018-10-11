@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { doUpdateRow, doDeleteRow } from '../actions/userTable'
+import baffle from 'baffle'
 
 class TableRow extends Component {
   constructor(props) {
@@ -84,6 +85,14 @@ class TableRow extends Component {
 
   loginChange = e => {
     this.setState({ login: e.target.value })
+  }
+
+  componentDidMount() {
+    let b = baffle('.login-cell', {
+      characters: '█▓▒░█▓▒░█▓▒░<>/',
+      speed: 20,
+    }).start()
+    b.reveal(5000)
   }
 
   render() {
