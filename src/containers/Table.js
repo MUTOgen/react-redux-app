@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import propTypes from 'prop-types'
-import TableRow from '../components/TableRow'
-import AddUserForm from '../components/AddUserForm'
+import TableRow from './TableRow'
+import AddUserForm from './AddUserForm'
 import Pagination from '../components/Pagination'
 import { doLoad } from '../actions/userTable'
 
